@@ -10,6 +10,72 @@
   <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Elsie+Swash+Caps:wght@400;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Playwrite+IS:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+<style>
+  .category-buttons {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 20px;
+      }
+      
+      .category-btn {
+          padding: 8px 16px;
+          border: none;
+          border-radius: 20px;
+          background-color: #3498db;
+          color: white;
+          cursor: pointer;
+          transition: all 0.3s;
+      }
+      
+      .category-btn:hover {
+          background-color: #2980b9;
+      }
+      
+      .category-btn.active {
+          background-color: #2c3e50;
+      }
+      
+      .crops-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 20px;
+      }
+      
+      .crop-card {
+          background-color: white;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          transition: transform 0.3s;
+      }
+      
+      .crop-card:hover {
+          transform: translateY(-5px);
+      }
+      
+      .crop-image {
+          height: 150px;
+          background-color: #ecf0f1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      
+      .crop-image img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+      }
+      
+      .crop-name {
+          padding: 15px;
+          text-align: center;
+          font-weight: bold;
+          color: #2c3e50;
+      }
+</style>
 <body>
   <header>
     <nav>
@@ -40,26 +106,26 @@
       <h2>Our Team</h2>
       <div class="team-grid">
         <div class="team-member">
-          <img src="{{ url_for('static', filename='images/team1.jpg') }}" alt="Dr. Sharma">
+          <img src="https://images.unsplash.com/photo-1580982325236-11d214b9f279?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dr. Sharma">
           <h3>Dr. Ramesh Sharma</h3>
           <p>Agricultural Scientist</p>
           <p>20+ years experience in soil research</p>
         </div>
         <div class="team-member">
-          <img src="{{ url_for('static', filename='images/team2.jpg') }}" alt="Priya Patel">
+          <img src="https://plus.unsplash.com/premium_photo-1661378616433-bff991a9a272?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Priya Patel">
           <h3>Priya Patel</h3>
           <p>Data Scientist</p>
           <p>Machine learning specialist</p>
         </div>
         <div class="team-member">
-          <img src="{{ url_for('static', filename='images/team3.jpg') }}" alt="Vijay Kumar">
+          <img src="https://plus.unsplash.com/premium_photo-1682092605397-818fd5621240?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vijay Kumar">
           <h3>Vijay Kumar</h3>
           <p>Agronomist</p>
           <p>Field expert and extension officer</p>
         </div>
       </div>
     </section>
-
+    
     <section class="technology">
       <h2>Our Technology</h2>
       <div class="tech-stack">
@@ -102,6 +168,151 @@
         </div>
       </div>
     </section>
+    <!-- yet to do  -->
+    <!-- <section class="crops-section">
+      <div class="container">
+        <h2>Crops We Support</h2>
+        <p>Our system provides recommendations for over 50 different crops cultivated across India:</p>
+        
+        <div class="crops-gallery">
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Apple">
+            </div>
+            <div class="crop-name">Apple</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Banana">
+            </div>
+            <div class="crop-name">Banana</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Grapes">
+            </div>
+            <div class="crop-name">Grapes</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Mango">
+            </div>
+            <div class="crop-name">Mango</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Orange">
+            </div>
+            <div class="crop-name">Orange</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1541179328528-b0b1b4ff1ef3?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pomegranate">
+            </div>
+            <div class="crop-name">Pomegranate</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://plus.unsplash.com/premium_photo-1724256227270-44572e77d129?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+              alt="Watermelon">
+            </div>
+            <div class="crop-name">Watermelon</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Rice">
+            </div>
+            <div class="crop-name">Rice</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1437252611977-07f74518abd7?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wheat">
+            </div>
+            <div class="crop-name">Wheat</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1575354895874-9d665b356387?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Maize">
+            </div>
+            <div class="crop-name">Maize</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Vegetables">
+            </div>
+            <div class="crop-name">Vegetables</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Tomato">
+            </div>
+            <div class="crop-name">Tomato</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Potato">
+            </div>
+            <div class="crop-name">Potato</div>
+          </div>
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1609211593856-20240d322bcb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cotton">
+            </div>
+            <div class="crop-name">Cotton</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=3161&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Coffee">
+            </div>
+            <div class="crop-name">Coffee</div>
+          </div>
+          
+          <div class="crop-card">
+            <div class="crop-image">
+              <img src="" alt="Coconut">
+            </div>
+            <div class="crop-name">Coconut</div>
+          </div>
+          
+        </div>
+        
+        <div class="text-center" style="margin-top: 2rem;">
+          <p>And many more including: Arecanut, Barley, Blackgram, Chickpea, Coriander, Cowpea, Cumin, Fenugreek, Garlic, Ginger, Green gram, Groundnut, Jute, Mustard, Okra, Onion, and Turmeric.</p>
+          <a href="/predict" class="btn">See Full Crop List</a>
+        </div>
+      </div>
+    </section> -->
+    <div class="container">
+      <h1>Crop Catalog</h1>
+      
+      <div class="category-buttons">
+        <button class="category-btn active" data-category="all">🌱 All Crops</button>
+        <button class="category-btn" data-category="fruits">🍎 Fruits</button>
+        <button class="category-btn" data-category="vegetables">🥦 Vegetables</button>
+        <button class="category-btn" data-category="cereals">🌾 Cereals</button>
+        <button class="category-btn" data-category="pulses">🥜 Pulses</button>
+        <button class="category-btn" data-category="spices">🌶️ Spices</button>
+        <button class="category-btn" data-category="plantation">🌴 Plantation</button>
+        <button class="category-btn" data-category="others">🌿 Others</button>
+    </div>
+      
+      <div class="crops-grid" id="cropsContainer">
+          <!-- Crop cards will be inserted here by JavaScript -->
+      </div>
+  </div>
   </main>
 
   <footer>
@@ -129,5 +340,123 @@
       <p>&copy; 2025 AgriPredict. All rights reserved.</p>
     </div>
   </footer>
+  <script>
+    // Crop data with categories
+    const crops = [
+        { name: "Apple", category: "fruits" },
+        { name: "Arecanut", category: "plantation" },
+        { name: "Banana", category: "fruits" },
+        { name: "Barley", category: "cereals" },
+        { name: "Ber", category: "fruits" },
+        { name: "Betel Leaf", category: "plantation" },
+        { name: "Bitter Gourd", category: "vegetables" },
+        { name: "Blackgram", category: "pulses" },
+        { name: "Bottle Gourd", category: "vegetables" },
+        { name: "Brinjal", category: "vegetables" },
+        { name: "Cabbage", category: "vegetables" },
+        { name: "Castor Seed", category: "others" },
+        { name: "Cauliflower", category: "vegetables" },
+        { name: "Chickpea", category: "pulses" },
+        { name: "Coconut", category: "plantation" },
+        { name: "Coffee", category: "plantation" },
+        { name: "Coriander", category: "spices" },
+        { name: "Cotton", category: "others" },
+        { name: "Cowpea", category: "pulses" },
+        { name: "Cumin", category: "spices" },
+        { name: "Custard Apple", category: "fruits" },
+        { name: "Fenugreek", category: "spices" },
+        { name: "Field Pea", category: "pulses" },
+        { name: "Fingermillet", category: "cereals" },
+        { name: "Flax", category: "others" },
+        { name: "Foxtailmillet", category: "cereals" },
+        { name: "Garlic", category: "vegetables" },
+        { name: "Ginger", category: "spices" },
+        { name: "Grapes", category: "fruits" },
+        { name: "Green Gram", category: "pulses" },
+        { name: "Groundnut", category: "pulses" },
+        { name: "Guava", category: "fruits" },
+        { name: "Hemp", category: "others" },
+        { name: "Horse Gram", category: "pulses" },
+        { name: "Jackfruit", category: "fruits" },
+        { name: "Jute", category: "others" },
+        { name: "Kidneybeans", category: "pulses" },
+        { name: "Kodomillet", category: "cereals" },
+        { name: "Lentil", category: "pulses" },
+        { name: "Littlemillet", category: "cereals" },
+        { name: "Lychee", category: "fruits" },
+        { name: "Maize", category: "cereals" },
+        { name: "Mango", category: "fruits" },
+        { name: "Mothbeans", category: "pulses" },
+        { name: "Mungbean", category: "pulses" },
+        { name: "Muskmelon", category: "fruits" },
+        { name: "Mustard", category: "others" },
+        { name: "Okra", category: "vegetables" },
+        { name: "Onion", category: "vegetables" },
+        { name: "Orange", category: "fruits" },
+        { name: "Papaya", category: "fruits" },
+        { name: "Pearlmillet", category: "cereals" },
+        { name: "Pigeonpeas", category: "pulses" },
+        { name: "Pineapple", category: "fruits" },
+        { name: "Pomegranate", category: "fruits" },
+        { name: "Potato", category: "vegetables" },
+        { name: "Prosomillet", category: "cereals" },
+        { name: "Rajma", category: "pulses" },
+        { name: "Rice", category: "cereals" },
+        { name: "Rubber", category: "plantation" },
+        { name: "Sapota", category: "fruits" },
+        { name: "Sesame", category: "others" },
+        { name: "Sorghum", category: "cereals" },
+        { name: "Spinach", category: "vegetables" },
+        { name: "Sunflower", category: "others" },
+        { name: "Tomato", category: "vegetables" },
+        { name: "Tur", category: "pulses" },
+        { name: "Turmeric", category: "spices" },
+        { name: "Watermelon", category: "fruits" },
+        { name: "Wheat", category: "cereals" }
+    ];
+
+    // Function to generate crop cards
+    function generateCropCards(filterCategory = 'all') {
+        const container = document.getElementById('cropsContainer');
+        container.innerHTML = '';
+        
+        crops.forEach(crop => {
+            if (filterCategory === 'all' || crop.category === filterCategory) {
+                const card = document.createElement('div');
+                card.className = 'crop-card';
+                card.innerHTML = `
+                    <div class="crop-name">${crop.name}</div>
+                `;
+                // card.innerHTML = `
+                //     <div class="crop-image">
+                //         <img src="https://source.unsplash.com/200x150/?${encodeURIComponent(crop.name)}" alt="${crop.name}">
+                //     </div>
+                //     <div class="crop-name">${crop.name}</div>
+                // `;
+                container.appendChild(card);
+            }
+        });
+    }
+
+    // Initialize with all crops
+    generateCropCards();
+
+    // Add event listeners to category buttons
+    document.querySelectorAll('.category-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Filter crops by category
+            const category = this.getAttribute('data-category');
+            generateCropCards(category);
+        });
+    });
+</script>
 </body>
 </html>
