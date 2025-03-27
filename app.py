@@ -59,7 +59,8 @@ import pickle
 import json
 
 app = Flask(__name__)
-model = pickle.load(open('model.pkl', 'rb'))
+# model = pickle.load(open('model.pkl', 'rb'))
+model = None
 
 # Load crop details from JSON
 jsonpath="crop_data.json"
