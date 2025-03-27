@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Arimo&family=Hind:wght@300&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Elsie+Swash+Caps:wght@400;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Playwrite+IS:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/result_style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="top-div" > <a href="/">⬅️ Go Back</a>
+            <h1>🌿 Predicted Crop: <span class="highlight">{{ prediction_text }}</span> 🌱</h1>
+        </div>
+        <div class="result-box">
+            <h2>🌍 Best Growing Conditions:</h2>
+            <p><strong>🪴 Soil:</strong> {{ crop_details.soil_type }}</p>
+            <p><strong>☀️ Climate:</strong> {{ crop_details.best_grown_in }}</p>
+            <p><strong>⏳ Growing Time:</strong> {{ crop_details.growing_time }}</p>
+            <p><strong>🍂 Best Season:</strong> {{ crop_details.best_season }}</p>
+            <p><strong>🌡️ Ideal Temperature:</strong> {{ crop_details.ideal_temperature }}</p>
+        </div>
+        {% if crop_details.steps %}
+        <div class="result-box">
+            <h2>🛠️ Steps to Grow:</h2>
+            <ul>
+                {% for step in crop_details.steps %}
+                    <li>✅ {{ step }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if crop_details.problems_and_solutions %}
+        <div class="result-box">
+            <h2>🚨 Common Problems & Solutions:</h2>
+            <ul>
+                {% for problem, solution in crop_details.problems_and_solutions.items() %}
+                    <li><strong>⚠️ {{ problem }}:</strong> {{ solution }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if crop_details.tools_needed %}
+        <div class="result-box">
+            <h2>🛠️ Tools Needed:</h2>
+            <ul>
+                {% for tool in crop_details.tools_needed %}
+                    <li><strong>🔧 {{ tool }}</strong></li>
+                {% endfor %}
+
+            </ul>
+        </div>
+        {% endif %}
+        <div class="result-box">
+            <h2>📊 Expected Yield & Market Price:</h2>
+            <p><strong>🌾 Yield:</strong> {{ crop_details.expected_yield }}</p>
+            <p><strong>💰 Market Price:</strong> {{ crop_details.market_price }}</p>
+        </div>
+    </div>
+</body>
+</html>

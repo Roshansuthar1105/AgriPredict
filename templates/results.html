@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Prediction Results | AgriPredict</title>
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Elsie+Swash+Caps:wght@400;900&family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result_style.css') }}">
+    <style>
+        .agri-bg {
+            background-color: #f7faf7;
+        }
+        .agri-card {
+            background: white;
+            border-left: 4px solid #4CAF50;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .agri-text-primary {
+            color: #2E7D32;
+        }
+        .agri-text-secondary {
+            color: #388E3C;
+        }
+        .agri-highlight {
+            background-color: #E8F5E9;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .font-amita {
+            font-family: 'Amita', cursive;
+        }
+        .font-elsie {
+            font-family: 'Elsie Swash Caps', cursive;
+        }
+    </style>
+</head>
+<body class="agri-bg min-h-screen">
+    <header>
+        <nav>
+          <div class="logo"><a href="/">🌱 AgriPredict</a></div>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/predict">Predict</a></li>
+            <li><a href="/resources">Resources</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-6 bg-white rounded-lg shadow-sm">
+            <h1 class="text-3xl font-bold text-agri-primary font-amita">
+                <span class="text-green-600">🌿</span> Recommended Crop: 
+                <span class="agri-highlight text-green-800  ">{{ prediction_text }}</span> 
+                <span class="text-green-600">🌱</span>
+            </h1>
+        </div>
+
+        <!-- Growing Conditions -->
+        <div class="agri-card rounded-lg p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-agri-primary font-elsie mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Optimal Growing Conditions
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3">🪴</span>
+                    <div>
+                        <h3 class="font-medium text-gray-700">Soil Type</h3>
+                        <p class="text-gray-900">{{ crop_details.soil_type }}</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3">☀️</span>
+                    <div>
+                        <h3 class="font-medium text-gray-700">Climate</h3>
+                        <p class="text-gray-900">{{ crop_details.best_grown_in }}</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3">⏳</span>
+                    <div>
+                        <h3 class="font-medium text-gray-700">Growing Time</h3>
+                        <p class="text-gray-900">{{ crop_details.growing_time }}</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3">🍂</span>
+                    <div>
+                        <h3 class="font-medium text-gray-700">Best Season</h3>
+                        <p class="text-gray-900">{{ crop_details.best_season }}</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3">🌡️</span>
+                    <div>
+                        <h3 class="font-medium text-gray-700">Ideal Temperature</h3>
+                        <p class="text-gray-900">{{ crop_details.ideal_temperature }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Steps to Grow -->
+        {% if crop_details.steps %}
+        <div class="agri-card rounded-lg p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-agri-primary font-elsie mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                Cultivation Steps
+            </h2>
+            <ol class="space-y-3">
+                {% for step in crop_details.steps %}
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 bg-green-100 rounded-full p-1 mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                    <span class="text-gray-700">{{ step }}</span>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        {% endif %}
+
+        <!-- Problems & Solutions -->
+        {% if crop_details.problems_and_solutions %}
+        <div class="agri-card rounded-lg p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-agri-primary font-elsie mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                Common Challenges & Solutions
+            </h2>
+            <div class="space-y-4">
+                {% for problem, solution in crop_details.problems_and_solutions.items() %}
+                <div class="bg-red-50 p-4 rounded-lg">
+                    <h3 class="font-medium text-red-700 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                        {{ problem }}
+                    </h3>
+                    <p class="mt-2 text-gray-700 ml-7">{{ solution }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Tools Needed -->
+        {% if crop_details.tools_needed %}
+        <div class="agri-card rounded-lg p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-agri-primary font-elsie mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Required Tools & Equipment
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {% for tool in crop_details.tools_needed %}
+                <div class="flex items-center bg-yellow-50 p-3 rounded-lg">
+                    <span class="bg-yellow-100 p-2 rounded-full mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                    <span class="font-medium text-gray-700">{{ tool }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Yield & Market Info -->
+        <div class="agri-card rounded-lg p-6">
+            <h2 class="text-2xl font-semibold text-agri-primary font-elsie mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                Expected Yield & Market Value
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="font-medium text-blue-700 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                        Projected Yield
+                    </h3>
+                    <p class="mt-2 text-gray-800 ml-7">{{ crop_details.expected_yield }}</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h3 class="font-medium text-green-700 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Current Market Price
+                    </h3>
+                    <p class="mt-2 text-gray-800 ml-7">{{ crop_details.market_price }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>AgriPredict</h3>
+            <p>Empowering farmers with AI-driven agricultural insights since 2023</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/predict">Predict</a></li>
+              <li><a href="/resources">Resources</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: info@agripredict.com</p>
+            <p>Phone: +91 9876543210</p>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 AgriPredict. All rights reserved.</p>
+        </div>
+      </footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About AgriPredict</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Arimo&family=Hind:wght@300&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Elsie+Swash+Caps:wght@400;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Playwrite+IS:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"><a href="/">🌱 AgriPredict</a></div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about"  class="active">About</a></li>
+        <li><a href="/predict">Predict</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><a href="/blog" >Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="about-page">
+    <section class="about-hero">
+      <h1>About AgriPredict</h1>
+      <p>Revolutionizing agriculture through data-driven insights</p>
+    </section>
+
+    <section class="mission">
+      <h2>Our Mission</h2>
+      <p>AgriPredict was founded with a simple goal: to help farmers make better crop decisions using artificial intelligence and machine learning. We combine traditional agricultural knowledge with modern technology to provide personalized recommendations for every farm.</p>
+    </section>
+
+    <section class="team">
+      <h2>Our Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='images/team1.jpg') }}" alt="Dr. Sharma">
+          <h3>Dr. Ramesh Sharma</h3>
+          <p>Agricultural Scientist</p>
+          <p>20+ years experience in soil research</p>
+        </div>
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='images/team2.jpg') }}" alt="Priya Patel">
+          <h3>Priya Patel</h3>
+          <p>Data Scientist</p>
+          <p>Machine learning specialist</p>
+        </div>
+        <div class="team-member">
+          <img src="{{ url_for('static', filename='images/team3.jpg') }}" alt="Vijay Kumar">
+          <h3>Vijay Kumar</h3>
+          <p>Agronomist</p>
+          <p>Field expert and extension officer</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="technology">
+      <h2>Our Technology</h2>
+      <div class="tech-stack">
+        <div class="tech-item">
+          <div class="tech-icon">🤖</div>
+          <h3>Machine Learning</h3>
+          <p>Advanced algorithms trained on thousands of soil samples and climate data points</p>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">📊</div>
+          <h3>Data Analytics</h3>
+          <p>Real-time analysis of multiple agricultural parameters</p>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">🌐</div>
+          <h3>Local Knowledge</h3>
+          <p>Region-specific recommendations based on local farming practices</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <h2>Our Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">10,000+</div>
+          <div class="stat-label">Farmers Helped</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">30%</div>
+          <div class="stat-label">Average Yield Increase</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Crops Supported</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15</div>
+          <div class="stat-label">Indian States Covered</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>AgriPredict</h3>
+        <p>Empowering farmers with AI-driven agricultural insights since 2023</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/predict">Predict</a></li>
+          <li><a href="/resources">Resources</a></li>  <li><a href="/blog">Blog</a></li>  <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: info@agripredict.com</p>
+        <p>Phone: +91 9876543210</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 AgriPredict. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

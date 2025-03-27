@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Prediction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Arimo&family=Hind:wght@300&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Elsie+Swash+Caps:wght@400;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Playwrite+IS:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="login">
+    <h1>Predict Crop Analysis</h1>
+    <div class="form-div" >
+
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict') }}" method="post">
+          <div class="input-group">
+            <label for="nitrogen">Nitrogen (mg/kg):</label>
+            <input type="number" min="0" max="140" step="1" name="nitrogen" id="nitrogen" placeholder="Enter Nitrogen (0 - 140 mg/kg)" required />
+        </div>
+        
+        <div class="input-group">
+            <label for="phosphorus">Phosphorus (mg/kg):</label>
+            <input type="number" min="5" max="145" step="1" name="phosphorus" id="phosphorus" placeholder="Enter Phosphorus (5 - 145 mg/kg)" required />
+        </div>
+        
+        <div class="input-group">
+            <label for="potassium">Potassium (mg/kg):</label>
+            <input type="number" min="5" max="205" step="1" name="potassium" id="potassium" placeholder="Enter Potassium (5 - 205 mg/kg)" required />
+        </div>
+        
+        <div class="input-group">
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" min="9" max="43" step="1" name="temperature" id="temperature" placeholder="Enter Temperature (9 - 43°C)" required />
+        </div>
+        
+        <div class="input-group">
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" min="14" max="99" step="1" name="humidity" id="humidity" placeholder="Enter Humidity (14 - 99%)" required />
+        </div>
+        
+        <div class="input-group">
+            <label for="ph">pH Level:</label>
+            <input type="number" min="3" max="9" step="1" name="ph" id="ph" placeholder="Enter pH Level (3 - 9)" required />
+        </div>
+        
+        <div class="input-group">
+            <label for="rainfall">Rainfall (mm):</label>
+            <input type="number" min="20" max="298" step="1" name="rainfall" id="rainfall" placeholder="Enter Rainfall (20 - 298 mm)" required />
+        </div>
+        
+        <div class="input-group">
+            <label for="water_level">Water Level (cm):</label>
+            <input type="number" min="0" max="100" step="1" name="water_level" id="water_level" placeholder="Enter Water Level (0 - 100 cm)" required />
+        </div>
+        
+          
+      
+      <!-- Language Selection Dropdown 
+         <select name="language" required>
+          <option value="english">English</option>
+          <option value="hindi">Hindi</option>
+          <option value="tamil">Tamil</option>
+          <option value="telugu">Telugu</option>
+          <option value="kannada">Kannada</option>
+          <option value="malayalam">Malayalam</option>
+          <option value="bengali">Bengali</option>
+          <option value="gujarati">Gujarati</option>
+          <option value="marathi">Marathi</option>
+          <option value="punjabi">Punjabi</option>
+          <option value="urdu">Urdu</option>
+        </select>
+      -->
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+</div>
+</div>
+</body>
+</html>

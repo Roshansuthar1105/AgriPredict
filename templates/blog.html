@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriPredict Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Arimo&family=Hind:wght@300&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Elsie+Swash+Caps:wght@400;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Playwrite+IS:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"><a href="/">🌱 AgriPredict</a></div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/predict">Predict</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><a href="/blog" class="active">Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="blog-page">
+    <section class="blog-hero">
+      <h1>AgriPredict Blog</h1>
+      <p>Latest news, insights, and stories from the world of agriculture</p>
+    </section>
+
+    <div class="blog-container">
+      <section class="featured-post">
+        <div class="featured-image">
+          <img 
+          src="https://images.unsplash.com/photo-1526280760714-f9e8b26f318f?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          alt="Featured Post">
+        </div>
+        <div class="featured-content">
+          <span class="post-category">Innovation</span>
+          <h2>How AI is Transforming Small-Scale Farming in India</h2>
+          <p class="post-excerpt">Discover how technologies like AgriPredict are helping small farmers increase yields and reduce costs through data-driven agriculture...</p>
+          <div class="post-meta">
+            <span class="post-date">June 15, 2023</span>
+            <span class="post-read-time">5 min read</span>
+          </div>
+          <a href="#" class="read-more">Read Full Article →</a>
+        </div>
+      </section>
+
+      <section class="blog-grid">
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1507484467459-0c01be16726e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+           alt="Sustainable Farming">
+          <div class="card-content">
+            <span class="post-category">Sustainability</span>
+            <h3>5 Water Conservation Techniques for Dry Regions</h3>
+            <p class="post-excerpt">Practical methods to make the most of limited water resources in arid farming conditions...</p>
+            <div class="post-meta">
+              <span class="post-date">June 10, 2023</span>
+              <span class="post-read-time">4 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://plus.unsplash.com/premium_photo-1663100110235-8e2b33c305a1?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+           alt="Soil Health">
+          <div class="card-content">
+            <span class="post-category">Soil Science</span>
+            <h3>Understanding Soil Microbiome for Better Crops</h3>
+            <p class="post-excerpt">How the unseen life in your soil affects plant health and what you can do to improve it...</p>
+            <div class="post-meta">
+              <span class="post-date">June 5, 2023</span>
+              <span class="post-read-time">6 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=2906&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          alt="Market Trends">
+          <div class="card-content">
+            <span class="post-category">Market Trends</span>
+            <h3>2023 Crop Price Predictions and What to Plant</h3>
+            <p class="post-excerpt">Analysis of market trends to help you decide which crops might be most profitable this year...</p>
+            <div class="post-meta">
+              <span class="post-date">May 28, 2023</span>
+              <span class="post-read-time">7 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1585844687190-d14d7a9711b7?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          alt="Organic Farming">
+          <div class="card-content">
+            <span class="post-category">Organic Farming</span>
+            <h3>Transitioning to Organic: A Farmer's Journey</h3>
+            <p class="post-excerpt">One farmer's experience moving from conventional to organic practices over three years...</p>
+            <div class="post-meta">
+              <span class="post-date">May 20, 2023</span>
+              <span class="post-read-time">8 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1599511492258-af40715a7be2?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          alt="Technology">
+          <div class="card-content">
+            <span class="post-category">Technology</span>
+            <h3>Best Agriculture Apps for Indian Farmers</h3>
+            <p class="post-excerpt">Our curated list of the most useful apps for farmers in India, covering crop management, weather forecasting, and more...</p>
+            <div class="post-meta">
+              <span class="post-date">May 15, 2023</span>
+              <span class="post-read-time">9 min read</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>AgriPredict</h3>
+        <p>Empowering farmers with AI-driven agricultural insights since 2023</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/predict">Predict</a></li>
+          <li><a href="/resources">Resources</a></li>  <li><a href="/blog">Blog</a></li>  <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: info@agripredict.com</p>
+        <p>Phone: +91 9876543210</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 AgriPredict. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

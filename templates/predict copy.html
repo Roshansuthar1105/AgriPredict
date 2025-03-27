@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Prediction | AgriPredict</title>
+  <!-- Consistent Fonts with Other Pages -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Arimo&family=Hind:wght@300&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Elsie+Swash+Caps:wght@400;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Playwrite+IS:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- Page-specific CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/predict_style.css') }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">🌱 AgriPredict</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/predict" class="active">Predict</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="predict-page">
+    <section class="prediction-header">
+      <div class="container">
+        <h1>Crop Recommendation Analysis</h1>
+        <p>Enter your soil and climate parameters to get the optimal crop suggestion</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="prediction-card">
+        <form action="{{ url_for('predict') }}" method="post">
+          <div class="form-grid">
+            <!-- Soil Parameters -->
+            <div class="form-section">
+              <h2><span class="icon">🧪</span> Soil Parameters</h2>
+              
+              <div class="input-group">
+                <label for="nitrogen">
+                  <span class="input-icon">N</span> Nitrogen (mg/kg)
+                </label>
+                <input type="number" id="nitrogen" name="nitrogen" 
+                       min="0" max="140" step="1" 
+                       placeholder="0 - 140 mg/kg" required>
+                <div class="input-range">
+                  <span>0</span>
+                  <input type="range" min="0" max="140" value="70" 
+                         oninput="document.getElementById('nitrogen').value = this.value">
+                  <span>140</span>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="phosphorus">
+                  <span class="input-icon">P</span> Phosphorus (mg/kg)
+                </label>
+                <input type="number" id="phosphorus" name="phosphorus" 
+                       min="5" max="145" step="1" 
+                       placeholder="5 - 145 mg/kg" required>
+                <div class="input-range">
+                  <span>5</span>
+                  <input type="range" min="5" max="145" value="75" 
+                         oninput="document.getElementById('phosphorus').value = this.value">
+                  <span>145</span>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="potassium">
+                  <span class="input-icon">K</span> Potassium (mg/kg)
+                </label>
+                <input type="number" id="potassium" name="potassium" 
+                       min="5" max="205" step="1" 
+                       placeholder="5 - 205 mg/kg" required>
+                <div class="input-range">
+                  <span>5</span>
+                  <input type="range" min="5" max="205" value="105" 
+                         oninput="document.getElementById('potassium').value = this.value">
+                  <span>205</span>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="ph">
+                  <span class="input-icon">pH</span> Soil pH Level
+                </label>
+                <input type="number" id="ph" name="ph" 
+                       min="3" max="9" step="0.1" 
+                       placeholder="3.0 - 9.0" required>
+                <div class="input-range">
+                  <span>3</span>
+                  <input type="range" min="3" max="9" value="6" step="0.1" 
+                         oninput="document.getElementById('ph').value = this.value">
+                  <span>9</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Climate Parameters -->
+            <div class="form-section">
+              <h2><span class="icon">🌦️</span> Climate Parameters</h2>
+              
+              <div class="input-group">
+                <label for="temperature">
+                  <span class="input-icon">🌡️</span> Temperature (°C)
+                </label>
+                <input type="number" id="temperature" name="temperature" 
+                       min="9" max="43" step="1" 
+                       value="30"
+                       placeholder="9 - 43°C" required>
+                <div class="input-range">
+                  <span>9</span>
+                  <input type="range" min="9" max="43" value="26" 
+                         oninput="document.getElementById('temperature').value = this.value">
+                  <span>43</span>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="humidity">
+                  <span class="input-icon">💧</span> Humidity (%)
+                </label>
+                <input type="number" id="humidity" name="humidity" 
+                       min="14" max="99" step="1" 
+                       placeholder="14 - 99%" required>
+                <div class="input-range">
+                  <span>14</span>
+                  <input type="range" min="14" max="99" value="56" 
+                         oninput="document.getElementById('humidity').value = this.value">
+                  <span>99</span>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="rainfall">
+                  <span class="input-icon">🌧️</span> Rainfall (mm)
+                </label>
+                <input type="number" id="rainfall" name="rainfall" 
+                       min="20" max="298" step="1" 
+                       placeholder="20 - 298 mm" required>
+                <div class="input-range">
+                  <span>20</span>
+                  <input type="range" min="20" max="298" value="159" 
+                         oninput="document.getElementById('rainfall').value = this.value">
+                  <span>298</span>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="water_level">
+                  <span class="input-icon">🚰</span> Water Level (cm)
+                </label>
+                <input type="number" id="water_level" name="water_level" 
+                       min="0" max="100" step="1" 
+                       placeholder="0 - 100 cm" required>
+                <div class="input-range">
+                  <span>0</span>
+                  <input type="range" min="0" max="100" value="50" 
+                         oninput="document.getElementById('water_level').value = this.value">
+                  <span>100</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" class="predict-button">
+              <span class="button-icon">🔮</span> Predict Optimal Crop
+            </button>
+            <p class="form-note">Our AI model analyzes 8 parameters to recommend the best crop for your conditions</p>
+          </div>
+        </form>
+      </div>
+
+      <div class="info-card">
+        <h3>How to collect these parameters?</h3>
+        <ul>
+          <li><strong>Soil nutrients (N,P,K):</strong> Obtain from soil test reports or local agriculture department</li>
+          <li><strong>pH Level:</strong> Measure using pH meter or test kit</li>
+          <li><strong>Climate data:</strong> Available from weather stations or agricultural extensions</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>AgriPredict</h3>
+        <p>AI-powered crop recommendations for modern farming</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/predict">Predict</a></li>
+          <li><a href="/resources">Resources</a></li>  <li><a href="/blog">Blog</a></li>  <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: info@agripredict.com</p>
+        <p>Phone: +91 9876543210</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 AgriPredict. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sync range sliders with number inputs
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+      input.addEventListener('input', function() {
+        const range = this.previousElementSibling.querySelector('input[type="range"]');
+        if (range) range.value = this.value;
+      });
+    });
+
+    // Form validation
+    // document.querySelector('form').addEventListener('submit', function(e) {
+    //   const inputs = this.querySelectorAll('input[type="number"]');
+    //   let isValid = true;
+      
+    //   inputs.forEach(input => {
+    //     if (!input.value || 
+    //         input.value < input.min || 
+    //         input.value > input.max) {
+    //       input.style.borderColor = '#f44336';
+    //       isValid = false;
+    //     } else {
+    //       input.style.borderColor = '';
+    //     }
+    //   });
+      
+    //   if (!isValid) {
+    //     e.preventDefault();
+    //     alert('Please enter valid values for all fields within the specified ranges.');
+    //   }
+    // });
+  
+  </script>
+</body>
+</html>
