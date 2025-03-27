@@ -64,7 +64,7 @@ rfc.fit(x_train.values,y_train.values)
 
 pickle.dump(rfc , open('model1.pkl','wb'))
 
-model = pickle.load(open('model1.pkl','rb'))
+# model = pickle.load(open('model1.pkl','rb'))
 # print(model.predict([[61,38,55,76,52,28,180,2]]))
 
 prediction = rfc.predict((np.array([[61,38,55,76,52,28,180,2]])))
