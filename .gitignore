@@ -1,7 +1,8 @@
 todo.txt
 
-*.pkl
-
+*pkl
+model.pkl
+model1.pkl
 
 
 # Byte-compiled / optimized / DLL files
