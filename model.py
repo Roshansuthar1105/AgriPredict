@@ -58,13 +58,13 @@ from sklearn.ensemble import RandomForestClassifier
 
 # logmodel = lm()
 # logmodel.fit(x_train.values,y_train.values)
-rfc = RandomForestClassifier(n_estimators = 500,criterion = "entropy")
+rfc = RandomForestClassifier(n_estimators = 100,criterion = "entropy")
 rfc.fit(x_train.values,y_train.values)
 # predict_r = rfc.predict(x_test)
 
-pickle.dump(rfc , open('model.pkl','wb'))
+pickle.dump(rfc , open('model1.pkl','wb'))
 
-model = pickle.load(open('model.pkl','rb'))
+model = pickle.load(open('model1.pkl','rb'))
 # print(model.predict([[61,38,55,76,52,28,180,2]]))
 
 prediction = rfc.predict((np.array([[61,38,55,76,52,28,180,2]])))
