@@ -59,7 +59,7 @@ import pickle
 import json
 
 app = Flask(__name__)
-# model = pickle.load(open('model.pkl', 'rb'))
+model = pickle.load(open('model1.pkl', 'rb'))
 model = None
 
 # Load crop details from JSON
