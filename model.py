@@ -6,9 +6,9 @@ import pandas as pd
 import pickle
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-
-# df = pd.read_csv('plant(IBM - Z).csv')
-df=pd.read_csv('data.csv')
+from sklearn.metrics import accuracy_score
+df = pd.read_csv('plant(IBM - Z).csv')
+# df=pd.read_csv('data.csv')
 # print(df.isna().sum())
 
 df.P = df.P.fillna(value = 0)
@@ -58,17 +58,21 @@ from sklearn.ensemble import RandomForestClassifier
 
 # logmodel = lm()
 # logmodel.fit(x_train.values,y_train.values)
-rfc = RandomForestClassifier(n_estimators = 100,criterion = "entropy")
-rfc.fit(x_train.values,y_train.values)
-# predict_r = rfc.predict(x_test)
+# rfc = RandomForestClassifier(n_estimators = 100,criterion = "entropy")
+# rfc.fit(x_train.values,y_train.values)
+# # predict_r = rfc.predict(x_test)
 
-pickle.dump(rfc , open('model1.pkl','wb'))
+# pickle.dump(rfc , open('minimodel.pkl','wb'))
+model = pickle.load(open('minimodel.pkl','rb'))
+# pickle.dump(rfc , open('model2.pkl','wb'))
+# model = pickle.load(open('model2.pkl','rb'))
 
-# model = pickle.load(open('model1.pkl','rb'))
 # print(model.predict([[61,38,55,76,52,28,180,2]]))
+predict_r = model.predict(x_test.values)  # Ensure to use x_test.values for prediction
+accuracy = accuracy_score(y_test.values, predict_r)
+print("Model Accuracy: {:.2f}%".format(accuracy * 100))
+# prediction = rfc.predict((np.array([[61,38,55,76,52,28,180,2]])))
+# print("The suggested crop is : ",prediction) 
 
-prediction = rfc.predict((np.array([[61,38,55,76,52,28,180,2]])))
-print("The suggested crop is : ",prediction) 
-
-prediction = rfc.predict((np.array([[90,42,43,20.87,82,6.5,203,2]])))
-print("The suggested crop is : ",prediction) 
+# prediction = rfc.predict((np.array([[90,42,43,20.87,82,6.5,203,2]])))
+# print("The suggested crop is : ",prediction) 
