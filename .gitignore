@@ -3,8 +3,8 @@ todo.txt
 model2.pkl
 model.pkl
 model1.pkl
-
-
+.\frontend\react-frontend\node_modules
+node_modules
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
