@@ -1,1 +1,29 @@
-@import "tailwindcss";
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+/* Custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Amita:wght@400;700&family=Elsie+Swash+Caps:wght@400;900&family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Custom styles */
+body {
+  font-family: 'Roboto', 'Inter', sans-serif;
+}
+
+.font-serif {
+  font-family: 'Amita', 'Elsie Swash Caps', serif;
+}
+
+.font-pacifico {
+  font-family: 'Pacifico', cursive;
+}
